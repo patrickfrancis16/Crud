@@ -1,10 +1,10 @@
 <?php
 
 class Database {
-    private $host = 'db'; // Nome do serviço definido no Docker Compose
-    private $dbname = '10.4.0.13'; // Nome do banco definido no Docker Compose
-    private $username = 'root'; // Usuário configurado
-    private $password = '@S0n3p4r!!'; // Senha configurada
+    private $host = 'db'; 
+    private $dbname = '10.4.0.13'; 
+    private $username = 'root'; 
+    private $password = '@S0n3p4r!!'; 
     private $conn;
 
     public function getConnection() {

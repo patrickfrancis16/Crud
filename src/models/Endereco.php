@@ -7,9 +7,9 @@ class Endereco {
         $this->db = (new Database())->getConnection();
     }
 
-    // Método para listar os endereços de um cliente
+    
     public static function listarEnderecos($cliente_id) {
-        $db = (new Database())->getConnection(); // Cria uma nova conexão para uso no método estático
+        $db = (new Database())->getConnection(); 
 
         $query = "SELECT * FROM crud_patrick_enderecos WHERE cliente_id = :cliente_id AND status = 'ativo'";
 
@@ -17,12 +17,12 @@ class Endereco {
         $stmt->bindParam(":cliente_id", $cliente_id);
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna os dados dos endereços
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); 
     }
 
-    // Método para adicionar endereço
+    
     public function adicionarEndereco($cliente_id, $logradouro, $numero, $bairro, $cidade, $estado, $cep, $principal) {
-        // Verifica se o cliente tem um endereço principal antes de adicionar outro
+        
         if ($principal) {
             $this->marcarEnderecoComoPrincipal($cliente_id);
         }
@@ -44,13 +44,13 @@ class Endereco {
         return $stmt->execute();
     }
 
-    // Outros métodos da classe Endereco...
+    
 
-    // Método para salvar (inserir ou atualizar) o endereço
+    
 public function save() {
-    // Se o endereço já existir (tem ID), faz um UPDATE, senão, um INSERT
+    
     if ($this->id) {
-        // Atualiza o endereço
+        
         $query = "UPDATE crud_patrick_enderecos SET logradouro = :logradouro, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, cep = :cep, principal = :principal WHERE id = :id";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(":id", $this->id);
@@ -63,7 +63,7 @@ public function save() {
         $stmt->bindParam(":principal", $this->principal);
         return $stmt->execute();
     } else {
-        // Caso contrário, faz um INSERT
+        
         $query = "INSERT INTO crud_patrick_enderecos (cliente_id, logradouro, numero, bairro, cidade, estado, cep, principal) VALUES (:cliente_id, :logradouro, :numero, :bairro, :cidade, :estado, :cep, :principal)";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(":cliente_id", $this->cliente_id);
@@ -78,7 +78,7 @@ public function save() {
     }
 }
 
-// Método para excluir o endereço
+
 public function delete() {
     $query = "UPDATE crud_patrick_enderecos SET status = 'inativo' WHERE id = :id";
     $stmt = $this->db->prepare($query);

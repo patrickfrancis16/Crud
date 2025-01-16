@@ -7,7 +7,7 @@ class Cliente {
         $this->db = (new Database())->getConnection();
     }
 
-    // Adicionar cliente
+    
     public function adicionarCliente($nome, $sobrenome, $data_nascimento, $sexo, $escolaridade, $profissao, $cpf, $telefone, $email) {
         $query = "INSERT INTO crud_joao_clientes (nome, sobrenome, data_nascimento, sexo, escolaridade, profissao, cpf, telefone, email)
                   VALUES (:nome, :sobrenome, :data_nascimento, :sexo, :escolaridade, :profissao, :cpf, :telefone, :email)";
@@ -27,7 +27,7 @@ class Cliente {
         return $stmt->execute();
     }
 
-    // Editar cliente
+    
     public function editarCliente($id, $nome, $sobrenome, $data_nascimento, $sexo, $escolaridade, $profissao, $cpf, $telefone, $email) {
         $query = "UPDATE crud_joao_clientes
                   SET nome = :nome, sobrenome = :sobrenome, data_nascimento = :data_nascimento, sexo = :sexo, 
@@ -51,7 +51,7 @@ class Cliente {
         return $stmt->execute();
     }
 
-    // Listar clientes
+    
     public function listarClientes() {
         $query = "SELECT * FROM crud_joao_clientes WHERE status = 'ativo'";
 
@@ -61,7 +61,7 @@ class Cliente {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Excluir cliente (soft delete)
+    
     public function excluirCliente($id) {
         $query = "UPDATE crud_joao_clientes
                   SET status = 'inativo', alterado_em = NOW()

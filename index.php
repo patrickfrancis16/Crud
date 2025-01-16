@@ -4,30 +4,30 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Definir uma variável de erro para capturar mensagens de erro
+
 $errorMessage = '';
 
-// Carrega o autoloader para as classes
+
 require_once __DIR__ . '/src/models/router.php';
 require_once __DIR__ . '/src/config/database.php';
 
-// Define o caminho para a pasta views/
+
 define('VIEWS_DIR', __DIR__ . '/src/views/');
 
-// Inicializa a conexão com o banco de dados (se necessário)
+
 $database = new Database();
 
-// Inicializa o roteamento da aplicação e captura o erro, caso ocorra
+
 try {
-    // Exibe uma mensagem de depuração para ver se chegou até aqui
+    
     echo "Iniciando o roteamento...<br>";
 
     $router = new Router();
-    $router->run(); // Roteia para a URL especificada
+    $router->run(); 
 } catch (Exception $e) {
-    // Captura qualquer erro e armazena na variável de erro
+    
     $errorMessage = "Erro: " . $e->getMessage();
-    // Exibe uma mensagem de depuração para ver se a exceção está sendo capturada
+    
     echo "Erro capturado: " . $e->getMessage() . "<br>";
 }
 

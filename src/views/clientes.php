@@ -33,8 +33,8 @@
             <th>Sobrenome</th>
         </tr>
         <?php
-        // Aqui você irá puxar os dados dos clientes do banco de dados
-        // Exemplo (com um array de clientes fictício)
+        
+        
         $clientes = [
             ['id' => 1, 'nome' => 'João', 'sobrenome' => 'Silva'],
             ['id' => 2, 'nome' => 'Maria', 'sobrenome' => 'Oliveira'],
